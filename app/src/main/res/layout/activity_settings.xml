@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center|top"
+    android:background="#000000">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textSize="24sp"
+        android:padding="20dp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Word length:"
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="30dp"
+            android:paddingBottom="5dp"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/wordLengthTextView"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="30dp"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="#ffffff"
+            android:text="4" />
+
+
+    </LinearLayout>
+
+
+    <SeekBar
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/wordLengthSlider"
+        android:padding="10dp"
+        android:max="20"
+        android:background="#ffffff"
+        android:progress="4" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Guesses:"
+            android:id="@+id/guessesTextView"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="5dp"
+            android:textColor="#ffffff" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/guessesValTextView"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="#ffffff"
+            android:text="8" />
+
+    </LinearLayout>
+
+    <SeekBar
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/guessesSlider"
+        android:padding="10dp"
+        android:max="12"
+        android:background="#ffffff"
+        android:progress="8" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Evil"
+        android:textSize="18sp"
+        android:id="@+id/evilModeSwitch"
+        android:switchPadding="110dp"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:background="#716d6d"
+        android:checked="false" />
+
+    <Button
+        android:layout_width="205dp"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/SaveButton"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="50dp"
+        android:onClick="SaveButtonOnClick"
+        android:background="@drawable/buttonstartstyle"
+        android:textColor = "@drawable/startcolor"
+        android:textSize = "36sp"
+        android:textStyle = "bold"
+        android:padding="10dp"/>
+
+</LinearLayout>
