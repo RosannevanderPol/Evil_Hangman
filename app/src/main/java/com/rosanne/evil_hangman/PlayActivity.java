@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,7 +52,6 @@ public class PlayActivity extends Activity {
                 isContain = true;
                 curAnswer.set(i, true);
                 disableLetter(c);
-                curLives = curLives + 2;
 
                 Log.d("test", "curLives" + curLives);
             }
@@ -147,7 +147,7 @@ public class PlayActivity extends Activity {
             isComplete = true;
         }
 
-        //ImageView imageHanging = (ImageView) findViewById(R.id.imageHanging);
+        ImageView imageHanging = (ImageView) findViewById(R.id.imageHanging);
         TextView textFill = (TextView) findViewById(R.id.textFill);
 
         //complete
@@ -157,7 +157,7 @@ public class PlayActivity extends Activity {
                 char c = (char) ('a' + i);
                 disableLetter(c);
             }
-            //imageHanging.setImageResource(R.drawable.hanggood);
+            imageHanging.setImageResource(R.drawable.hangwon);
             Toast.makeText(getApplicationContext(),
                     "You won!",
                     Toast.LENGTH_LONG).show();
@@ -166,76 +166,76 @@ public class PlayActivity extends Activity {
         }
 
         //not complete
-        if (!isComplete) //curLives < 24 && !isContain)
+        if (!isComplete)
         {
             textFill.setText(getCurAnswer());
         }
             switch (curLives)
             {
                 case 36:
-                    //imageHanging.setImageResource(R.drawable.hang0);
+                    imageHanging.setImageResource(R.drawable.hang1);
                     Toast.makeText(getApplicationContext(),
                             "12 guesses left!",
                             Toast.LENGTH_LONG).show();
                 case 33:
-                    //imageHanging.setImageResource(R.drawable.hang0);
+                    imageHanging.setImageResource(R.drawable.hang1);
                     Toast.makeText(getApplicationContext(),
                             "11 guesses left!",
                             Toast.LENGTH_LONG).show();
                 case 30:
-                    //imageHanging.setImageResource(R.drawable.hang0);
+                    imageHanging.setImageResource(R.drawable.hang1);
                     Toast.makeText(getApplicationContext(),
                             "10 guesses left!",
                             Toast.LENGTH_LONG).show();
                 case 27:
-                    //imageHanging.setImageResource(R.drawable.hang0);
+                    imageHanging.setImageResource(R.drawable.hang1);
                     Toast.makeText(getApplicationContext(),
                             "9 guesses left!",
                             Toast.LENGTH_LONG).show();
                 case 24:
-                    //imageHanging.setImageResource(R.drawable.hang0);
+                    imageHanging.setImageResource(R.drawable.hang2);
                     Toast.makeText(getApplicationContext(),
                             "8 guesses left!",
                             Toast.LENGTH_LONG).show();
                     break;
                 case 21:
-                    //imageHanging.setImageResource(R.drawable.hang1);
+                    imageHanging.setImageResource(R.drawable.hang3);
                     Toast.makeText(getApplicationContext(),
                             "7 guesses left!",
                             Toast.LENGTH_LONG).show();
                     break;
                 case 18:
-                    //imageHanging.setImageResource(R.drawable.hang2);
+                    imageHanging.setImageResource(R.drawable.hang4);
                     Toast.makeText(getApplicationContext(),
                             "6 guesses left!",
                             Toast.LENGTH_LONG).show();
                     break;
                 case 15:
-                    //imageHanging.setImageResource(R.drawable.hang3);
+                    imageHanging.setImageResource(R.drawable.hang5);
                     Toast.makeText(getApplicationContext(),
                             "5 guesses left!",
                             Toast.LENGTH_LONG).show();
                     break;
                 case 12:
-                    //imageHanging.setImageResource(R.drawable.hang4);
+                    imageHanging.setImageResource(R.drawable.hang6);
                     Toast.makeText(getApplicationContext(),
                             "4 guesses left!",
                             Toast.LENGTH_LONG).show();
                     break;
                 case 9:
-                    //imageHanging.setImageResource(R.drawable.hang5);
+                    imageHanging.setImageResource(R.drawable.hang7);
                     Toast.makeText(getApplicationContext(),
                             "3 guesses left!",
                             Toast.LENGTH_LONG).show();
                     break;
                 case 6:
-                    //imageHanging.setImageResource(R.drawable.hang6);
+                    imageHanging.setImageResource(R.drawable.hang8);
                     Toast.makeText(getApplicationContext(),
                             "2 guesses left!",
                             Toast.LENGTH_LONG).show();
                     break;
                 case 3:
-                    //imageHanging.setImageResource(R.drawable.hang7);
+                    imageHanging.setImageResource(R.drawable.hang9);
                     Toast.makeText(getApplicationContext(),
                             "1 guesses left!",
                             Toast.LENGTH_LONG).show();
@@ -243,13 +243,14 @@ public class PlayActivity extends Activity {
     }
 
     // game over
-    if (curLives == 0)
+    if (curLives <= 0)
     {
         for (int j = 0; j < 26; j++)
         {
             char c = (char) ('a' + j);
             disableLetter(c);
         }
+        imageHanging.setImageResource(R.drawable.hanglose);
         Toast.makeText(getApplicationContext(),
         "Game over!",
         Toast.LENGTH_LONG).show();
@@ -261,7 +262,7 @@ public class PlayActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        //curlevel = intent.getIntExtra("level", curlevel);    //"level",0);
+
         setContentView(R.layout.activity_play);
 
         TextView textLevel= (TextView)findViewById(R.id.textLevel);
