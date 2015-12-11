@@ -37,7 +37,7 @@ public class PlayActivity extends Activity {
     private TextView guessesValTextView, wordLengthTextView;
     private int Score;
     private TextView TextviewScore;
-    public String name;
+    public TextView name;
 
     public PlayActivity() {
     }
@@ -45,6 +45,8 @@ public class PlayActivity extends Activity {
     private void inputLetter(char c)
     {
         TextView Scorepoints = (TextView) findViewById(R.id.TextviewScore);
+        SharedPreferences settings = getSharedPreferences("MySettings", Context.MODE_PRIVATE);
+        int wordLengthVal = settings.getInt("wordLength", 4);
 
         for(int i =0; i < key.length(); ++i)
         {
@@ -56,9 +58,10 @@ public class PlayActivity extends Activity {
                 disableLetter(c);
                 Score = Score + 10;
                 Scorepoints.setText("Score: "+ Score);
-                curLives = curLives + wordLengthVal;
+                curLives = curLives + (wordLengthVal-1);
 
                 Log.d("test", "curLives" + curLives);
+                Log.d("test", "wordlengtval" + wordLengthVal);
             }
             if (c != ans)
             {
@@ -149,7 +152,6 @@ public class PlayActivity extends Activity {
     /** check if the word is guessed/complete **/
     private void checkResult()
     {
-        //int Lives = ((curLives)/(wordLengthVal));
         boolean isComplete = false;
         if (!getCurAnswer().contains("_"))
         {
@@ -172,92 +174,96 @@ public class PlayActivity extends Activity {
                     Toast.LENGTH_LONG).show();
             textFill.setText(getCurAnswer());
 
-            imageHanging.setImageResource(R.drawable.hang1);
-
             TextView name = (TextView) findViewById(R.id.editTextName);
             SharedPreferences settings = getSharedPreferences("Highscores", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor= settings.edit();
-            editor.putInt(String.valueOf(name), Score);
+            editor.putInt("Score", Score);
+            editor.putString("name", String.valueOf(name));
             editor.commit();
             return;
         }
 
         //not complete
+        SharedPreferences settings = getSharedPreferences("MySettings", Context.MODE_PRIVATE);
+        int wordLengthVal = settings.getInt("wordLength", 4);
+        int plaatje = curLives / wordLengthVal;
+
         if (!isComplete)
         {
             textFill.setText(getCurAnswer());
+            if (plaatje == 12) {
+                imageHanging.setImageResource(R.drawable.hang1);
+                Toast.makeText(getApplicationContext(),
+                        "12 guesses left!",
+                        Toast.LENGTH_LONG).show();
+            }
+            if (plaatje == 11) {
+                imageHanging.setImageResource(R.drawable.hang1);
+                Toast.makeText(getApplicationContext(),
+                        "11 guesses left!",
+                        Toast.LENGTH_LONG).show();
+            }
+            if (plaatje == 10) {
+                imageHanging.setImageResource(R.drawable.hang1);
+                Toast.makeText(getApplicationContext(),
+                        "10 guesses left!",
+                        Toast.LENGTH_LONG).show();
+            }
+            if (plaatje == 9) {
+                imageHanging.setImageResource(R.drawable.hang1);
+                Toast.makeText(getApplicationContext(),
+                        "9 guesses left!",
+                        Toast.LENGTH_LONG).show();
+            }
+            if (plaatje == 8) {
+                imageHanging.setImageResource(R.drawable.hang2);
+                Toast.makeText(getApplicationContext(),
+                        "8 guesses left!",
+                        Toast.LENGTH_LONG).show();
+            }
+            if (plaatje == 7) {
+                imageHanging.setImageResource(R.drawable.hang3);
+                Toast.makeText(getApplicationContext(),
+                        "7 guesses left!",
+                        Toast.LENGTH_LONG).show();
+            }
+            if (plaatje == 6) {
+                imageHanging.setImageResource(R.drawable.hang4);
+                Toast.makeText(getApplicationContext(),
+                        "6 guesses left!",
+                        Toast.LENGTH_LONG).show();
+            }
+            if (plaatje == 5) {
+                imageHanging.setImageResource(R.drawable.hang5);
+                Toast.makeText(getApplicationContext(),
+                        "5 guesses left!",
+                        Toast.LENGTH_LONG).show();
+            }
+            if (plaatje == 4) {
+                imageHanging.setImageResource(R.drawable.hang6);
+                Toast.makeText(getApplicationContext(),
+                        "4 guesses left!",
+                        Toast.LENGTH_LONG).show();
+            }
+            if (plaatje == 3) {
+                imageHanging.setImageResource(R.drawable.hang7);
+                Toast.makeText(getApplicationContext(),
+                        "3 guesses left!",
+                        Toast.LENGTH_LONG).show();
+            }
+            if (plaatje == 2) {
+                imageHanging.setImageResource(R.drawable.hang8);
+                Toast.makeText(getApplicationContext(),
+                        "2 guesses left!",
+                        Toast.LENGTH_LONG).show();
+            }
+            if (plaatje == 1) {
+                imageHanging.setImageResource(R.drawable.hang9);
+                Toast.makeText(getApplicationContext(),
+                        "1 guesses left!",
+                        Toast.LENGTH_LONG).show();
+            }
         }
-            switch (curLives)
-            {
-                case 12:
-                    imageHanging.setImageResource(R.drawable.hang1);
-                    Toast.makeText(getApplicationContext(),
-                            "12 guesses left!",
-                            Toast.LENGTH_LONG).show();
-                case 11:
-                    imageHanging.setImageResource(R.drawable.hang1);
-                    Toast.makeText(getApplicationContext(),
-                            "11 guesses left!",
-                            Toast.LENGTH_LONG).show();
-                case 10:
-                    imageHanging.setImageResource(R.drawable.hang1);
-                    Toast.makeText(getApplicationContext(),
-                            "10 guesses left!",
-                            Toast.LENGTH_LONG).show();
-                case 9:
-                    imageHanging.setImageResource(R.drawable.hang1);
-                    Toast.makeText(getApplicationContext(),
-                            "9 guesses left!",
-                            Toast.LENGTH_LONG).show();
-                case 8:
-                    imageHanging.setImageResource(R.drawable.hang2);
-                    Toast.makeText(getApplicationContext(),
-                            "8 guesses left!",
-                            Toast.LENGTH_LONG).show();
-                    break;
-                case 7:
-                    imageHanging.setImageResource(R.drawable.hang3);
-                    Toast.makeText(getApplicationContext(),
-                            "7 guesses left!",
-                            Toast.LENGTH_LONG).show();
-                    break;
-                case 6:
-                    imageHanging.setImageResource(R.drawable.hang4);
-                    Toast.makeText(getApplicationContext(),
-                            "6 guesses left!",
-                            Toast.LENGTH_LONG).show();
-                    break;
-                case 5:
-                    imageHanging.setImageResource(R.drawable.hang5);
-                    Toast.makeText(getApplicationContext(),
-                            "5 guesses left!",
-                            Toast.LENGTH_LONG).show();
-                    break;
-                case 4:
-                    imageHanging.setImageResource(R.drawable.hang6);
-                    Toast.makeText(getApplicationContext(),
-                            "4 guesses left!",
-                            Toast.LENGTH_LONG).show();
-                    break;
-                case 3:
-                    imageHanging.setImageResource(R.drawable.hang7);
-                    Toast.makeText(getApplicationContext(),
-                            "3 guesses left!",
-                            Toast.LENGTH_LONG).show();
-                    break;
-                case 2:
-                    imageHanging.setImageResource(R.drawable.hang8);
-                    Toast.makeText(getApplicationContext(),
-                            "2 guesses left!",
-                            Toast.LENGTH_LONG).show();
-                    break;
-                case 1:
-                    imageHanging.setImageResource(R.drawable.hang9);
-                    Toast.makeText(getApplicationContext(),
-                            "1 guesses left!",
-                            Toast.LENGTH_LONG).show();
-                    break;
-    }
 
     // game over
     if (curLives <= 0)
@@ -279,16 +285,11 @@ public class PlayActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-
         setContentView(R.layout.activity_play);
-
-        TextView textFill = (TextView)findViewById(R.id.textFill);
-
+        TextView textFill = (TextView) findViewById(R.id.textFill);
         numGuesses();
         selectKey();
-
         textFill.setText(getCurAnswer());
-
     }
 
     @Override

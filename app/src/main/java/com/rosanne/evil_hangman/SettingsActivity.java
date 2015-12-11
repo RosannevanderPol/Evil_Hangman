@@ -6,17 +6,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SettingsActivity extends Activity {
 
     private static SeekBar wordLengthBar, guessesBar;
     private static Switch EvilModeSwitch;
-    private Button saveButton;
     private TextView guessesValTextView, wordLengthTextView;
     private int guessesVal, wordLengthVal;
     private boolean EvilGame;
@@ -25,12 +22,10 @@ public class SettingsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        //Intent calledActivity = getIntent();
         wordLengthBar = (SeekBar)findViewById(R.id.wordLengthSlider);
         guessesBar = (SeekBar)findViewById(R.id.guessesSlider);
         wordLengthBar = (SeekBar)findViewById(R.id.wordLengthSlider);
         EvilModeSwitch = (Switch)findViewById(R.id.evilModeSwitch);
-        saveButton = (Button)findViewById(R.id.SaveButton);
         guessesValTextView = (TextView)findViewById(R.id.guessesValTextView);
         wordLengthTextView = (TextView)findViewById(R.id.wordLengthTextView);
 
@@ -95,10 +90,8 @@ public class SettingsActivity extends Activity {
         editor.putInt("wordLength", wordLengthVal);
         editor.putBoolean("EvilGame", EvilGame);
         editor.commit();
-        Toast.makeText(this, "Settings will be applied in the next game", Toast.LENGTH_LONG).show();
         finish();
     }
-
 
     /** if the back button is pressed **/
     @Override
