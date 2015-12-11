@@ -25,9 +25,9 @@ import android.widget.Toast;
 public class PlayActivity extends Activity {
 
     private Random randomGenerator = new Random();
-    private final String[] easylist = {"cat", "sun", "cup","ghost","pie","cow"};
+    //private final String[] easylist = {"cat", "sun", "cup","ghost","pie","cow"};
+    //private final ArrayList<String> easyWords = new ArrayList<String>(Arrays.asList(easylist));
     private String[] AllWords;
-    private final ArrayList<String> easyWords = new ArrayList<String>(Arrays.asList(easylist));
     private ArrayList<String> Words;
     public int curLives;
     private ArrayList<Boolean> curAnswer;
@@ -35,14 +35,16 @@ public class PlayActivity extends Activity {
     public boolean isContain;
     public int wordLengthVal;
     private TextView guessesValTextView, wordLengthTextView;
-
-
+    private int Score;
+    private TextView TextviewScore;
+    public String name;
 
     public PlayActivity() {
     }
     /** check if the word contains the inputted letter **/
     private void inputLetter(char c)
     {
+        TextView Scorepoints = (TextView) findViewById(R.id.TextviewScore);
 
         for(int i =0; i < key.length(); ++i)
         {
@@ -52,6 +54,9 @@ public class PlayActivity extends Activity {
                 isContain = true;
                 curAnswer.set(i, true);
                 disableLetter(c);
+                Score = Score + 10;
+                Scorepoints.setText("Score: "+ Score);
+                curLives = curLives + wordLengthVal;
 
                 Log.d("test", "curLives" + curLives);
             }
@@ -59,7 +64,9 @@ public class PlayActivity extends Activity {
             {
                 isContain = false;
                 disableLetter(c);
-                curLives -= 1;
+                curLives = curLives - 1;
+                Score = Score -1;
+                Scorepoints.setText("Score: "+ Score);
                 Log.d("test","curLives"+curLives);
             }
         }
@@ -97,7 +104,8 @@ public class PlayActivity extends Activity {
     private void numGuesses() {
         SharedPreferences settings = getSharedPreferences("MySettings", Context.MODE_PRIVATE);
         int guessesVal = settings.getInt("guesses", 8);
-        curLives = guessesVal * 3;
+        int wordLengthVal = settings.getInt("wordLength", 4);
+        curLives = guessesVal * wordLengthVal;
     }
 
     /** choose a word to play with **/
@@ -111,7 +119,7 @@ public class PlayActivity extends Activity {
 
 
         SharedPreferences settings = getSharedPreferences("MySettings", Context.MODE_PRIVATE);
-        wordLengthVal = settings.getInt("wordLength", 4);
+        int wordLengthVal = settings.getInt("wordLength", 4);
 
         // fills list with words of chosen length.
         List<String> possibleWords = new ArrayList<String>();
@@ -141,6 +149,7 @@ public class PlayActivity extends Activity {
     /** check if the word is guessed/complete **/
     private void checkResult()
     {
+        //int Lives = ((curLives)/(wordLengthVal));
         boolean isComplete = false;
         if (!getCurAnswer().contains("_"))
         {
@@ -159,9 +168,17 @@ public class PlayActivity extends Activity {
             }
             imageHanging.setImageResource(R.drawable.hangwon);
             Toast.makeText(getApplicationContext(),
-                    "You won!",
+                    "Congratulations! You won!",
                     Toast.LENGTH_LONG).show();
             textFill.setText(getCurAnswer());
+
+            imageHanging.setImageResource(R.drawable.hang1);
+
+            TextView name = (TextView) findViewById(R.id.editTextName);
+            SharedPreferences settings = getSharedPreferences("Highscores", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor= settings.edit();
+            editor.putInt(String.valueOf(name), Score);
+            editor.commit();
             return;
         }
 
@@ -172,69 +189,69 @@ public class PlayActivity extends Activity {
         }
             switch (curLives)
             {
-                case 36:
+                case 12:
                     imageHanging.setImageResource(R.drawable.hang1);
                     Toast.makeText(getApplicationContext(),
                             "12 guesses left!",
                             Toast.LENGTH_LONG).show();
-                case 33:
+                case 11:
                     imageHanging.setImageResource(R.drawable.hang1);
                     Toast.makeText(getApplicationContext(),
                             "11 guesses left!",
                             Toast.LENGTH_LONG).show();
-                case 30:
+                case 10:
                     imageHanging.setImageResource(R.drawable.hang1);
                     Toast.makeText(getApplicationContext(),
                             "10 guesses left!",
                             Toast.LENGTH_LONG).show();
-                case 27:
+                case 9:
                     imageHanging.setImageResource(R.drawable.hang1);
                     Toast.makeText(getApplicationContext(),
                             "9 guesses left!",
                             Toast.LENGTH_LONG).show();
-                case 24:
+                case 8:
                     imageHanging.setImageResource(R.drawable.hang2);
                     Toast.makeText(getApplicationContext(),
                             "8 guesses left!",
                             Toast.LENGTH_LONG).show();
                     break;
-                case 21:
+                case 7:
                     imageHanging.setImageResource(R.drawable.hang3);
                     Toast.makeText(getApplicationContext(),
                             "7 guesses left!",
                             Toast.LENGTH_LONG).show();
                     break;
-                case 18:
+                case 6:
                     imageHanging.setImageResource(R.drawable.hang4);
                     Toast.makeText(getApplicationContext(),
                             "6 guesses left!",
                             Toast.LENGTH_LONG).show();
                     break;
-                case 15:
+                case 5:
                     imageHanging.setImageResource(R.drawable.hang5);
                     Toast.makeText(getApplicationContext(),
                             "5 guesses left!",
                             Toast.LENGTH_LONG).show();
                     break;
-                case 12:
+                case 4:
                     imageHanging.setImageResource(R.drawable.hang6);
                     Toast.makeText(getApplicationContext(),
                             "4 guesses left!",
                             Toast.LENGTH_LONG).show();
                     break;
-                case 9:
+                case 3:
                     imageHanging.setImageResource(R.drawable.hang7);
                     Toast.makeText(getApplicationContext(),
                             "3 guesses left!",
                             Toast.LENGTH_LONG).show();
                     break;
-                case 6:
+                case 2:
                     imageHanging.setImageResource(R.drawable.hang8);
                     Toast.makeText(getApplicationContext(),
                             "2 guesses left!",
                             Toast.LENGTH_LONG).show();
                     break;
-                case 3:
+                case 1:
                     imageHanging.setImageResource(R.drawable.hang9);
                     Toast.makeText(getApplicationContext(),
                             "1 guesses left!",
@@ -265,7 +282,6 @@ public class PlayActivity extends Activity {
 
         setContentView(R.layout.activity_play);
 
-        TextView textLevel= (TextView)findViewById(R.id.textLevel);
         TextView textFill = (TextView)findViewById(R.id.textFill);
 
         numGuesses();

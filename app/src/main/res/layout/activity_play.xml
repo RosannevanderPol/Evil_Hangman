@@ -7,17 +7,27 @@ android:layout_height="match_parent"
 android:orientation="vertical"
 android:background="#000000" >
 
-<TextView
-    android:id="@+id/textLevel"
-    android:layout_weight = "0.5"
-    android:layout_height="0dp"
-    android:layout_width="fill_parent"
-    android:gravity="center"
-    android:text=""
-    android:textSize = "20sp"
-    android:textColor = "#ffff"
-    android:textStyle = "bold" />
-<ImageView
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/editTextName"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Score: 0"
+        android:id="@+id/TextviewScore"
+        android:layout_gravity="right"
+        android:textColor="#ffffff" />
+
+    <ImageView
     android:id="@+id/imageHanging"
     android:layout_weight = "3"
     android:layout_height="0dp"

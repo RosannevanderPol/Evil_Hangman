@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.rosanne.evil_hangman.HighscoreActivity"
+    android:background="#000000"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Highscores"
+            android:id="@+id/textView3"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="#ffffff"
+            android:textAlignment="gravity" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:id="@+id/TextViewList"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/textView3"
+            android:layout_weight="31159.77"
+            android:text="Naam score"
+            android:textSize="20sp"
+            android:textIsSelectable="true" />
+
+        <LinearLayout
+            android:layout_weight = "212.31"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:weightSum="7"
+            android:padding="2dp"
+            android:textSize = "14sp"
+            android:layout_alignBottom="@+id/TextViewList"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/TextViewList"
+            android:layout_gravity="bottom">
+
+            <Button
+                android:id="@+id/buttonHome"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:onClick="goHome"
+                android:text="@string/button_go_home"
+                android:background= "@drawable/buttonnextonestyle"
+                android:textColor =  "@drawable/nextonecolor" />
+            <TextView
+                android:layout_weight = "1.5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="" />
+            <Button
+                android:id="@+id/buttonNext"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:onClick="nextOne"
+                android:text="@string/button_next"
+                android:background= "@drawable/buttonnextonestyle"
+                android:textColor = "@drawable/nextonecolor"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
+
+
