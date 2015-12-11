@@ -6,7 +6,6 @@ A game of evil-hangman
 
 **Features:**
 
-* new game: evil version
 * new game: normal version
 * high scores
 * settings
