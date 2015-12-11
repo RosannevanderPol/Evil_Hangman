@@ -37,9 +37,9 @@ public class MainActivity extends Activity
     public void startHighscore(View view) {
         Intent scores = new Intent(this, HighscoreActivity.class);
         startActivity(scores);
-        //Toast.makeText(getApplicationContext(),
-               // "Sorry! Not implemented jet.",
-               // Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),
+                "Sorry! It doesn't work bugfree.",
+                Toast.LENGTH_LONG).show();
     }
 
     public void EndApp(View view) {

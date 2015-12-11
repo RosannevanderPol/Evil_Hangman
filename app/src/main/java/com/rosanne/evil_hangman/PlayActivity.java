@@ -25,18 +25,12 @@ import android.widget.Toast;
 public class PlayActivity extends Activity {
 
     private Random randomGenerator = new Random();
-    //private final String[] easylist = {"cat", "sun", "cup","ghost","pie","cow"};
-    //private final ArrayList<String> easyWords = new ArrayList<String>(Arrays.asList(easylist));
-    private String[] AllWords;
     private ArrayList<String> Words;
     public int curLives;
     private ArrayList<Boolean> curAnswer;
     private String key;
     public boolean isContain;
-    public int wordLengthVal;
-    private TextView guessesValTextView, wordLengthTextView;
     private int Score;
-    private TextView TextviewScore;
     public TextView name;
 
     public PlayActivity() {
@@ -60,17 +54,17 @@ public class PlayActivity extends Activity {
                 Scorepoints.setText("Score: "+ Score);
                 curLives = curLives + (wordLengthVal-1);
 
-                Log.d("test", "curLives" + curLives);
-                Log.d("test", "wordlengtval" + wordLengthVal);
+                //Log.d("test", "curLives" + curLives);
             }
             if (c != ans)
             {
                 isContain = false;
                 disableLetter(c);
                 curLives = curLives - 1;
-                Score = Score -1;
-                Scorepoints.setText("Score: "+ Score);
-                Log.d("test","curLives"+curLives);
+                Score = Score -5;
+                Scorepoints.setText("Score: " + Score);
+
+                //Log.d("test","curLives"+curLives);
             }
         }
     }
@@ -99,7 +93,7 @@ public class PlayActivity extends Activity {
                 result += "_ ";
             }
         }
-        Log.d("test", result);
+        //Log.d("test", result);
         return result;
     }
 
@@ -114,12 +108,9 @@ public class PlayActivity extends Activity {
     /** choose a word to play with **/
     private void selectKey()
     {
-
         Resources res = getResources();
         String[] AllWords = res.getStringArray(R.array.wordsSmall);
         Words = new ArrayList<String>(Arrays.asList(AllWords));
-        //key = Words.get(randomGenerator.nextInt(Words.size())).toLowerCase();
-
 
         SharedPreferences settings = getSharedPreferences("MySettings", Context.MODE_PRIVATE);
         int wordLengthVal = settings.getInt("wordLength", 4);
@@ -287,6 +278,9 @@ public class PlayActivity extends Activity {
         Intent intent = getIntent();
         setContentView(R.layout.activity_play);
         TextView textFill = (TextView) findViewById(R.id.textFill);
+        Toast.makeText(getApplicationContext(),
+                "Please fill in your name for the highscores.",
+                Toast.LENGTH_LONG).show();
         numGuesses();
         selectKey();
         textFill.setText(getCurAnswer());
