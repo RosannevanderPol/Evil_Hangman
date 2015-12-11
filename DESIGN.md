@@ -6,40 +6,37 @@ tekstview: titel 'evil hangman'
 button1: newgame --> *screen 2*  
 button2: highscore --> *screen 3*  
 button3:settings --> *screen 4*  
+button4: extit
   
 ###screen 2  
 editText: het te raden woord  
 textview: aantal resterende pogingen  
 imageview: 'updatende' galg  
-  
-**INVISIBLE** tot einde spel:  
+
 textview: gewonnen/verloren  
 textview: oplossing  
 textview: naam  
-button: submit (naam voor highscores)  
   
 button1: home  
-button2: exit  
+button2: next  
   
 ###screen 3  
 tekstview: highscores  
 listview: namen en scores  
   
 button1: home  
-button2: exit  
+button2: next  
   
 ###screen 4  
 textview: instellingen  
-textview: versie  
+schuif: versie 
 * checkbox: evil  
 * checkbox: normal  
   
-textview: aantal letters  
-* button1: 5-10  
-* button2: 10-15  
+slider: aantal letters  
+slider: aantal pogingen  
 
-button3: home   
-button4: exit  
+button3: save
   
 Rosanne van der Pol
 -----------------------
